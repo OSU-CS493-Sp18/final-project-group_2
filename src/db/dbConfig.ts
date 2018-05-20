@@ -12,15 +12,15 @@ export const database = new Sequelize(dbName, dbUsername, dbPass, {
     host: 'localhost'
 });
 
-const sequelize = new Sequelize('database', 'username', 'password', {
+const sequelize = new Sequelize('db', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
     operatorsAliases: false
 });
 sequelize.authenticate()
-.then(() => {
-  console.log('Connection has been established successfully.');
-})
-.catch(err => {
-  console.error('Unable to connect to the database:', err);
-});
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });

@@ -11,7 +11,7 @@ exports.database = new Sequelize(dbName, dbUsername, dbPass, {
     port: 3307,
     host: 'localhost'
 });
-const sequelize = new Sequelize('database', 'username', 'password', {
+const sequelize = new Sequelize('db', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
     operatorsAliases: false

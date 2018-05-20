@@ -1,5 +1,5 @@
-create database expressapp;
-use expressapp;
+create database db;
+use db;
 
 create table jokes (
     id int auto_increment primary key,
