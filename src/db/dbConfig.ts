@@ -5,11 +5,12 @@ const dbName = 'expressapp';
 const dbUsername = 'root';
 const dbPass = 'root';
 
+
+
 //Create database 
-export const database = new Sequelize(dbName, dbUsername, dbPass, {
+export const database = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
     dialect: 'mysql',
-    port: 3307,
-    host: 'localhost'
+    port: 3306
 });
 
 const sequelize = new Sequelize('db', 'root', 'root', {
@@ -17,7 +18,7 @@ const sequelize = new Sequelize('db', 'root', 'root', {
     dialect: 'mysql',
     operatorsAliases: false
 });
-sequelize.authenticate()
+database.authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
     })

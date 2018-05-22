@@ -1,4 +1,3 @@
-import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import * as Bluebird from 'Bluebird';
 import { User, AddUserModel, UserModel } from './../models/users';
@@ -19,14 +18,9 @@ export module Users {
         };
 
         createUser({username, email, dadRating, pass}: AddUserModel) {
-            return bcrypt.hash(pass, this.saltRounds)
-            .then(
-                hash => {
-                    return User.create({username, email, dadRating, pass: hash})
+            return User.create({username, email, dadRating, pass: "pass"})
                     .then(user => this.getUser(user!.id));
                 }
-            )
-        }
 
         logInUser({username, email}: AddUserModel) {
             return User.findOne({ where: { username, email}})

@@ -1,18 +1,19 @@
-create database db;
-use db;
+DROP TABLE IF EXISTS `jokes`;
 
-create table jokes (
-    id int auto_increment primary key,
-    joke text not null,
-    dadRating int not null,
-    user text not null,
-    keywords text not null
-);
+CREATE TABLE `jokes` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `joke` VARCHAR(255) NOT NULL,
+    `dadRating` INT NOT NULL,
+    `user` TEXT NOT NULL,
+    `keywords` VARCHAR(255) NOT NULL
+) ENGINE=InnoDB;
 
-create table users (
-    id int auto_increment primary key,
-    username text not null,
-    pass text not null,
-    email text not null,
-    dadRating int not null,
-);
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `username` TEXT NOT NULL,
+    `pass` TEXT NOT NULL,
+    `email` TEXT NOT NULL,
+    `dadRating` INT NOT NULL
+) ENGINE=InnoDB;

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const users_1 = require("./../models/users");
 var Users;
@@ -19,11 +18,8 @@ var Users;
         }
         ;
         createUser({ username, email, dadRating, pass }) {
-            return bcrypt.hash(pass, this.saltRounds)
-                .then(hash => {
-                return users_1.User.create({ username, email, dadRating, pass: hash })
-                    .then(user => this.getUser(user.id));
-            });
+            return users_1.User.create({ username, email, dadRating, pass: "pass" })
+                .then(user => this.getUser(user.id));
         }
         logInUser({ username, email }) {
             return users_1.User.findOne({ where: { username, email } })
