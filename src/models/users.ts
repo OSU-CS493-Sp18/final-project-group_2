@@ -17,13 +17,5 @@ export interface UserModel extends Sequelize.Model<UserModel, AddUserModel> {
     email: string
 };
 
-export const User = database.define<UserModel, AddUserModel>('user',{
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    pass: Sequelize.STRING,
-    email: Sequelize.STRING,
-    dadRating: Sequelize.INTEGER
-});
+export interface User { 
+}

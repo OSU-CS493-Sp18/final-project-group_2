@@ -17,3 +17,15 @@ CREATE TABLE `users` (
     `email` TEXT NOT NULL,
     `dadRating` INT NOT NULL
 ) ENGINE=InnoDB;
+
+LOCK TABLES `users` WRITE;
+
+INSERT INTO `users` VALUES (1, "cheese", "blahblah", "my@email.com", 3);
+
+UNLOCK TABLES;
+
+LOCK TABLES `jokes` WRITE;
+
+INSERT INTO `jokes` VALUES (1, "Really good joke", 2, "cheese", "good, joke");
+
+UNLOCK TABLES;

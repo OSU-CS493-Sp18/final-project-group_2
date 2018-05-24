@@ -16,15 +16,3 @@ export interface JokeModel extends Sequelize.Model<JokeModel, AddJokeModel> {
     user: string
     keywords: string
 };
-
-export const Joke = database.define<JokeModel, AddJokeModel>('joke',{
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    joke: Sequelize.STRING,
-    dadRating: Sequelize.INTEGER,
-    user: Sequelize.STRING,
-    keywords: Sequelize.STRING
-});

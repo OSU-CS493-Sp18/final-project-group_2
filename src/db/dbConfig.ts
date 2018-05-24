@@ -1,27 +1,22 @@
 import * as Sequelize from 'sequelize';
-
+import * as MySQL from 'mysql';
 //Database credentials
-const dbName = 'expressapp';
-const dbUsername = 'root';
-const dbPass = 'root';
+const dbName : string =  process.env.MYSQL_DATABASE;
+const dbUsername : string  = process.env.MYSQL_USER;
+const dbPass : string = process.env.MYSQL_PASSWORD;
+const mysqlHost : string = process.env.MYSQL_HOST;
+const mysqlPort : number = 3306;
+const maxConnections : number = 10;
 
 
 
 //Create database 
-export const database = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
-    dialect: 'mysql',
-    port: 3306
+export const database = MySQL.createPool({
+    connectionLimit: maxConnections,
+    host: mysqlHost,
+    port: mysqlPort,
+    database: dbName,
+    user: dbUsername,
+    password: dbPass
 });
 
-const sequelize = new Sequelize('db', 'root', 'root', {
-    host: 'localhost',
-    dialect: 'mysql',
-    operatorsAliases: false
-});
-database.authenticate()
-    .then(() => {
-        console.log('Connection has been established successfully.');
-    })
-    .catch(err => {
-        console.error('Unable to connect to the database:', err);
-    });

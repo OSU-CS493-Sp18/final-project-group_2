@@ -2,6 +2,9 @@ import * as jwt from 'jsonwebtoken';
 import * as Bluebird from 'Bluebird';
 import { User, AddUserModel, UserModel } from './../models/users';
 import { resolve } from 'url';
+import * as MySQL from 'mysql';
+import { database } from '../db/dbConfig';
+import {matchedData } from 'express-validator/filter';
 
 export module Users {
     export class UserController {
@@ -18,22 +21,35 @@ export module Users {
         };
 
         createUser({username, email, dadRating, pass}: AddUserModel) {
-            return User.create({username, email, dadRating, pass: "pass"})
-                    .then(user => this.getUser(user!.id));
-                }
-
-        logInUser({username, email}: AddUserModel) {
-            return User.findOne({ where: { username, email}})
-            .then(user => {
-                const {id, email} = user!;
-                return {token: jwt.sign({ id, email }, this.jwtSecret)}
-            });
+            // return User.create({username, email, dadRating, pass: "pass"})
+            //         .then(user => this.getUser(user!.id));
+                //}
+            return "";
         }
 
-        getUser(id: number) {
-            return User.findById(id, {
-                attributes: UserController.userInfo
-            }) as Bluebird<UserModel>
+        // logInUser({username, email}: AddUserModel) {
+        //     return User.findOne({ where: { username, email}})
+        //     .then(user => {
+        //         const {id, email} = user!;
+        //         return {token: jwt.sign({ id, email }, this.jwtSecret)}
+        //     });
+        // }
+
+        getUser(id : number) {
+            return new Promise((resolve, reject) => {
+                database.query(
+                'SELECT * FROM users WHERE id = ?',
+                [ id ],
+                (err, results) =>
+            {
+                err ? reject(err) : resolve(results[0])
+            });
+            }).then((user) => {
+                console.log(user);
+                return user as UserModel;
+            }).catch((err) => {
+                return null;
+            })
         }
 
         verifyJwt(token: string){
@@ -43,7 +59,7 @@ export module Users {
                         return resolve(false);
                     }
 
-                    UserController.currentUser = User.findById(decoded['id']);
+                    // UserController.currentUser = User.findById(decoded['id']);
                     return resolve(true);
                 });
             }) as Promise<boolean>;

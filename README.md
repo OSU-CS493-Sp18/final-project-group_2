@@ -11,8 +11,26 @@ npm i -S body-parser cookie-parser cors express-validator
 npm i -S jsonwebtoken bcrypt
 ```
 
+compile with `tsc -p .`
+
 ### Running
 
 Run `npm start` to compile ts
 Run `npm run dev` to start server
 
+
+## TO DO's
+
+#### Users
+- [ ] GET
+    - [x] GET/id
+- [ ] POST
+- [ ] PUT
+- [ ] DELETE
+
+#### Jokes
+- [x] GET
+    - [x] GET/id
+- [x] POST
+- [ ] PUT
+- [ ] DELETE
