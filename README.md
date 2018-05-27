@@ -21,16 +21,36 @@ Run `npm run dev` to start server
 
 ## TO DO's
 
-#### Users
+NOTE: * Requires Authorization
+
+### Users
 - [ ] GET
+    - [x] GET/id*
+- [ ] POST 
+- [ ] PUT
+- [ ] DELETE*
+
+### Jokes
+- [x] GET
     - [x] GET/id
+    - [ ] GET/:keyword
+- [x] POST*
+- [ ] PUT*
+- [ ] DELETE*
+
+### Categories
+- [ ] GET
+    - [ ] GET/id    
 - [ ] POST
 - [ ] PUT
 - [ ] DELETE
 
-#### Jokes
-- [x] GET
-    - [x] GET/id
-- [x] POST
-- [ ] PUT
-- [ ] DELETE
+### Comment
+- [ ] GET
+    - [ ] GET/:id
+    - [ ] GET/:UserID*
+    - [ ] GET/:JokeID
+- [ ] POST*
+- [ ] PUT*
+- [ ] DELET*
+
