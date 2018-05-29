@@ -1,4 +1,4 @@
-import { AddUserModel } from './../models/users';
+import { AddUserModel, UserModel } from './../models/users';
 import { Router } from 'express';
 import { matchedData } from 'express-validator/filter';
 import { validationResult } from 'express-validator/check';
@@ -37,7 +37,8 @@ userRouter.get('/:userID', (req, res, next) => {
 });
 
 userRouter.post("/login", (req,res,next) => {
-    const user = req.body;
+    const user:UserModel = req.body;
+
     if (user) {
         userController.logInUser(user).then(token => {
             res.status(201).json({ msg: "You Logged in!", token: token });

@@ -23,7 +23,7 @@ export module Users {
 
         createUser(user: AddUserModel) {
             return new Promise((resolve, reject) => {
-                user.pass = bcrypt.hashSync(user.pass, 10);
+                user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
 
                 database.query(`INSERT INTO users SET ?`, user, (err, results) => {
                     err ? reject(err) : resolve(results);

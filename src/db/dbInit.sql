@@ -40,13 +40,14 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB;
 
 LOCK TABLES `users` WRITE;
-
 INSERT INTO `users` VALUES (1, "cheese", "blahblah", "my@email.com", 3);
+UNLOCK TABLES;
 
+LOCK TABLES `categories` WRITE;
+INSERT INTO `categories` VALUES (1, "cats");
+INSERT INTO `categories` VALUES (2, "computers");
 UNLOCK TABLES;
 
 LOCK TABLES `jokes` WRITE;
-
 INSERT INTO `jokes` VALUES (1, "Really good joke", 2, 1, "good, joke");
-
 UNLOCK TABLES;
