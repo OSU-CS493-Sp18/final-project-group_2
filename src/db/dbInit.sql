@@ -20,6 +20,21 @@ CREATE TABLE `users` (
     CONSTRAINT UNIQUE (`username`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `categories` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` TEXT NOT NULL,
+    CONSTRAINT UNIQUE (`name`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `comment` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `cmnt` TEXT NOT NULL,
+    `jokeId` INT NOT NULL,
+    `userId` INT NOT NULL,
+    FOREIGN KEY(`jokeId`) REFERENCES `jokes`(`id`), 
+    FOREIGN KEY(`userId`) REFERENCES `users`(`id`), 
+) ENGINE=InnoDB;
+
 LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` VALUES (1, "cheese", "blahblah", "my@email.com", 3);
