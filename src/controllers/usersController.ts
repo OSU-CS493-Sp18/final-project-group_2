@@ -57,9 +57,9 @@ export module Users {
                     (err, results) => {
                         err ? reject(err) : resolve(results[0])
                     });
-            }).then((user) => {
+            }).then((user:UserModel) => {
                 console.log(user);
-                return user as UserModel;
+                return user;
             }).catch((err) => {
                 return null;
             })
@@ -73,9 +73,9 @@ export module Users {
                     (err, results) => {
                         err ? reject(err) : resolve(results[0])
                     });
-            }).then((user) => {
+            }).then((user:UserModel) => {
                 console.log(user);
-                return user as UserModel;
+                return user;
             }).catch((err) => {
                 return null;
             })
@@ -85,13 +85,13 @@ export module Users {
             return new Promise((resolve, reject) => {
                 jwt.verify(token, this.jwtSecret, (err, decoded) => {
                     if (err) {
-                        return resolve(false);
+                        return reject(err);
                     }
 
                     // UserController.currentUser = User.findById(decoded['id']);
-                    return resolve(true);
+                    return resolve(decoded);
                 });
-            }) as Promise<boolean>;
+            }) as Promise<string|object>;
         }
     }
 }
