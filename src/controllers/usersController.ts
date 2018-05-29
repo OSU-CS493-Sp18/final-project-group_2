@@ -4,7 +4,8 @@ import { User, AddUserModel, UserModel } from './../models/users';
 import { resolve } from 'url';
 import * as MySQL from 'mysql';
 import { database } from '../db/dbConfig';
-import {matchedData } from 'express-validator/filter';
+import { matchedData } from 'express-validator/filter';
+import * as bcrypt from 'bcrypt';
 
 export module Users {
     export class UserController {
@@ -12,7 +13,7 @@ export module Users {
         private jwtSecret = 'supersecure';
 
         static get userInfo() {
-            return ['id', 'username','email', 'dadRating'];
+            return ['id', 'username', 'email', 'dadRating'];
         };
 
         private static currentUser;
@@ -20,11 +21,14 @@ export module Users {
             return UserController.currentUser;
         };
 
-        createUser({username, email, dadRating, pass}: AddUserModel) {
-            // return User.create({username, email, dadRating, pass: "pass"})
-            //         .then(user => this.getUser(user!.id));
-                //}
-            return "";
+        createUser(user: AddUserModel) {
+            return new Promise((resolve, reject) => {
+                user.pass = bcrypt.hashSync(user.pass, 10);
+
+                database.query(`INSERT INTO users SET ?`, user, (err, results) => {
+                    err ? reject(err) : resolve(results);
+                });
+            });
         }
 
         // logInUser({username, email}: AddUserModel) {
@@ -35,15 +39,14 @@ export module Users {
         //     });
         // }
 
-        getUser(id : number) {
+        getUser(id: number) {
             return new Promise((resolve, reject) => {
                 database.query(
-                'SELECT * FROM users WHERE id = ?',
-                [ id ],
-                (err, results) =>
-            {
-                err ? reject(err) : resolve(results[0])
-            });
+                    'SELECT * FROM users WHERE id = ?',
+                    [id],
+                    (err, results) => {
+                        err ? reject(err) : resolve(results[0])
+                    });
             }).then((user) => {
                 console.log(user);
                 return user as UserModel;
@@ -52,10 +55,10 @@ export module Users {
             })
         }
 
-        verifyJwt(token: string){
+        verifyJwt(token: string) {
             return new Promise((resolve, reject) => {
                 jwt.verify(token, this.jwtSecret, (err, decoded) => {
-                    if(err) {
+                    if (err) {
                         return resolve(false);
                     }
 

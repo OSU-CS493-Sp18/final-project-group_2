@@ -4,7 +4,8 @@ CREATE TABLE `jokes` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `joke` VARCHAR(255) NOT NULL,
     `dadRating` INT NOT NULL,
-    `user` TEXT NOT NULL,
+    `userId` INT NOT NULL,
+    FOREIGN KEY(`userId`) REFERENCES `users`(`id`), 
     `keywords` VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
