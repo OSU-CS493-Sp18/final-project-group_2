@@ -10,7 +10,7 @@ import * as bcrypt from 'bcrypt';
 export module Users {
     export class UserController {
         private saltRounds = 10;
-        private jwtSecret = 'supersecure';
+        private jwtSecret = 'jet_fuel_cant_melt_steel_dreams';
 
         static get userInfo() {
             return ['id', 'username', 'email', 'dadRating'];
