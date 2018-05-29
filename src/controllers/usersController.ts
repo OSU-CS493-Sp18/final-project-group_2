@@ -34,11 +34,11 @@ export module Users {
         logInUser(user: AddUserModel) {
             return new Promise((resolve, reject) => {
                 this.getUserByname(user.username).then(dbUser => {
-                    if (!dbUser || !bcrypt.compareSync(dbUser.pass,user.pass)) {
+                    if (!dbUser || !bcrypt.compareSync(dbUser.pass, user.pass)) {
                         reject(null);
                     } else {
                         const token = jwt.sign(
-                            {id: dbUser.username },
+                            { id: dbUser.username },
                             this.jwtSecret,
                             { expiresIn: 86400 }
                         );
@@ -57,7 +57,7 @@ export module Users {
                     (err, results) => {
                         err ? reject(err) : resolve(results[0])
                     });
-            }).then((user:UserModel) => {
+            }).then((user: UserModel) => {
                 console.log(user);
                 return user;
             }).catch((err) => {
@@ -65,7 +65,7 @@ export module Users {
             })
         }
 
-        getUserByname(username:string) {
+        getUserByname(username: string) {
             return new Promise((resolve, reject) => {
                 database.query(
                     'SELECT * FROM users WHERE username = ?',
@@ -73,12 +73,34 @@ export module Users {
                     (err, results) => {
                         err ? reject(err) : resolve(results[0])
                     });
-            }).then((user:UserModel) => {
+            }).then((user: UserModel) => {
                 console.log(user);
                 return user;
             }).catch((err) => {
                 return null;
             })
+        }
+
+        updateUser(user: UserModel) {
+            return new Promise((resolve, reject) => {
+                database.query('UPDATE users SET ? WHERE username=?', [user, user.username], (err, results) => {
+                    err ? reject(err) : resolve(results);
+                });
+            });
+        }
+
+        deleteUser(user:UserModel) {
+            return new Promise((resolve, reject) => {
+                this.getUserByname(user.username).then(dbUser => {
+                    if (!dbUser || !bcrypt.compareSync(dbUser.pass, user.pass)) {
+                        reject(null);
+                    } else {
+                        database.query("DELETE FROM users WHERE username=?", [dbUser.username],(err,result) => {
+                            err ? reject(err) : resolve(result);
+                        });
+                    }
+                });
+            });
         }
 
         verifyJwt(token: string) {
@@ -91,7 +113,7 @@ export module Users {
                     // UserController.currentUser = User.findById(decoded['id']);
                     return resolve(decoded);
                 });
-            }) as Promise<string|object>;
+            }) as Promise<string | object>;
         }
     }
 }
