@@ -20,11 +20,15 @@ CREATE TABLE `users` (
     CONSTRAINT UNIQUE (`username`)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS `categories`;
+
 CREATE TABLE `categories` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `name` TEXT NOT NULL,
     CONSTRAINT UNIQUE (`name`)
 ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `comment`;
 
 CREATE TABLE `comment` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
