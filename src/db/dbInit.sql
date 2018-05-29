@@ -16,7 +16,8 @@ CREATE TABLE `users` (
     `username` TEXT NOT NULL,
     `pass` TEXT NOT NULL,
     `email` TEXT NOT NULL,
-    `dadRating` INT NOT NULL
+    `dadRating` INT NOT NULL,
+    CONSTRAINT UNIQUE (`username`)
 ) ENGINE=InnoDB;
 
 LOCK TABLES `users` WRITE;
@@ -27,6 +28,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `jokes` WRITE;
 
-INSERT INTO `jokes` VALUES (1, "Really good joke", 2, "cheese", "good, joke");
+INSERT INTO `jokes` VALUES (1, "Really good joke", 2, 1, "good, joke");
 
 UNLOCK TABLES;
