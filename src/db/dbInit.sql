@@ -1,3 +1,22 @@
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(255) NOT NULL,
+    `pass` TEXT NOT NULL,
+    `email` TEXT NOT NULL,
+    `dadRating` INT NOT NULL,
+    UNIQUE (`username`)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `categories`;
+
+CREATE TABLE `categories` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    UNIQUE (`name`)
+) ENGINE=InnoDB;
+
 DROP TABLE IF EXISTS `jokes`;
 
 CREATE TABLE `jokes` (
@@ -9,25 +28,6 @@ CREATE TABLE `jokes` (
     `keywords` VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `users`;
-
-CREATE TABLE `users` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `username` TEXT NOT NULL,
-    `pass` TEXT NOT NULL,
-    `email` TEXT NOT NULL,
-    `dadRating` INT NOT NULL,
-    CONSTRAINT UNIQUE (`username`)
-) ENGINE=InnoDB;
-
-DROP TABLE IF EXISTS `categories`;
-
-CREATE TABLE `categories` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` TEXT NOT NULL,
-    CONSTRAINT UNIQUE (`name`)
-) ENGINE=InnoDB;
-
 DROP TABLE IF EXISTS `comment`;
 
 CREATE TABLE `comment` (
@@ -36,7 +36,7 @@ CREATE TABLE `comment` (
     `jokeId` INT NOT NULL,
     `userId` INT NOT NULL,
     FOREIGN KEY(`jokeId`) REFERENCES `jokes`(`id`), 
-    FOREIGN KEY(`userId`) REFERENCES `users`(`id`), 
+    FOREIGN KEY(`userId`) REFERENCES `users`(`id`)
 ) ENGINE=InnoDB;
 
 LOCK TABLES `users` WRITE;

@@ -8,14 +8,6 @@ import { Users } from '../controllers/usersController';
 export const userRouter = Router();
 const userController = new Users.UserController();
 
-userRouter.post('/', userValidation['createUser'], (req, res) => {
-
-    const user = matchedData(req) as AddUserModel;
-    const currentUser = userController.createUser(user);
-    //return currentUser.then(usr => res.json(usr));
-    res.json(currentUser);
-});
-
 /// GET user
 userRouter.get('/:userID', (req, res, next) => {
     const userID = parseInt(req.params.userID);
@@ -53,6 +45,8 @@ userRouter.post("/login", (req,res,next) => {
 userRouter.post("/", (req, res, next) => {
     const newUser = req.body;
     if (newUser) {
+        console.log(newUser);
+
         userController.createUser(newUser).then(results => {
             res.status(201).json({ msg: "New user added to database" });
         }).catch(err => {

@@ -25,6 +25,7 @@ export module Users {
                 user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
 
                 database.query(`INSERT INTO users SET ?`, user, (err, results) => {
+                    console.log(err);
                     err ? reject(err) : resolve(results);
                 });
             });
