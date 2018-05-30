@@ -43,11 +43,15 @@ NOTE: * Requires Authorization
 - [ ] DELETE*
 
 ### Categories
-- [ ] GET
-    - [ ] GET/id    
-- [ ] POST
-- [ ] PUT
-- [ ] DELETE
+- [x] GET
+    - [x] /id    
+    - [x] /   
+- [] POST
+    - [] /   
+- [] PUT
+    - [] /   
+- [] DELETE
+    - [] /   
 
 ### Comment
 - [ ] GET
