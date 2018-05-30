@@ -34,7 +34,8 @@ export module Users {
         logInUser(user: AddUserModel) {
             return new Promise((resolve, reject) => {
                 this.getUserByname(user.username).then(dbUser => {
-                    if (!dbUser || !bcrypt.compareSync(dbUser.pass, user.pass)) {
+                    console.log(dbUser);
+                    if (!dbUser || !bcrypt.compareSync(user.pass,dbUser.pass)) {
                         reject(null);
                     } else {
                         const token = jwt.sign(
