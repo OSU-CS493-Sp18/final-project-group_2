@@ -1,5 +1,4 @@
 import * as jwt from 'jsonwebtoken';
-import * as Bluebird from 'Bluebird';
 import { User, AddUserModel, UserModel } from './../models/users';
 import { resolve } from 'url';
 import * as MySQL from 'mysql';
