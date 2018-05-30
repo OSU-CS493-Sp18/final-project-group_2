@@ -7,6 +7,7 @@ export interface AddUserModel {
     pass: string
     dadRating: number
     email: string
+    token?:string
 };
 
 export interface UserModel extends Sequelize.Model<UserModel, AddUserModel> {
@@ -15,6 +16,7 @@ export interface UserModel extends Sequelize.Model<UserModel, AddUserModel> {
     pass: string
     dadRating: number
     email: string
+    token?:string
 };
 
 export interface User { 

@@ -45,8 +45,6 @@ userRouter.post("/login", (req,res,next) => {
 userRouter.post("/", (req, res, next) => {
     const newUser = req.body;
     if (newUser) {
-        console.log(newUser);
-
         userController.createUser(newUser).then(results => {
             res.status(201).json({ msg: "New user added to database" });
         }).catch(err => {
@@ -58,9 +56,31 @@ userRouter.post("/", (req, res, next) => {
 });
 
 userRouter.put("/", (req, res, next) => {
+    const updatedUser:UserModel = req.body;
 
+    if(updatedUser) {
+        userController.updateUser(updatedUser).then(results => {
+            console.log(results);
+            res.status(201).json({ msg: "Updated user in database" });
+        }).catch(err => {
+            res.status(500).json({ error: "Failed to update user" });
+        });
+    } else {
+        next();
+    }
 });
 
 userRouter.delete("/", (req, res, next) => {
+    const user:UserModel = req.body;
 
+    if(user) {
+        userController.deleteUser(user).then(results => {
+            res.status(204).json({ msg: "deleted user in database" });
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json({ error: "Failed to delete user" });
+        });
+    } else {
+        next();
+    }
 });
