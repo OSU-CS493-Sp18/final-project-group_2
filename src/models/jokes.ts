@@ -5,7 +5,7 @@ import { SERVFAIL } from 'dns';
 export interface AddJokeModel {
     joke: string
     dadRating: number
-    user: string
+    userId: number
     keywords: string
 };
 
@@ -13,6 +13,6 @@ export interface JokeModel extends Sequelize.Model<JokeModel, AddJokeModel> {
     id: number
     joke: string
     dadRating: number
-    user: string
+    userId: number
     keywords: string
 };

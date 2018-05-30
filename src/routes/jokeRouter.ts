@@ -79,3 +79,12 @@ jokesRouter.get('/', (req, res, next) => {
         });
     });
 });
+
+
+jokesRouter.put('/', (req,res,next) => {
+
+});
+
+jokesRouter.delete('/', (req,res,next) => {
+    
+});

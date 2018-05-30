@@ -8,30 +8,28 @@ import { matchedData } from 'express-validator/filter';
 export module Joke {
     export class JokeController {
 
-        addJoke(joke : AddJokeModel){
-            var newJoke : JokeModel = joke as JokeModel;
+        addJoke(joke: AddJokeModel) {
+            var newJoke: JokeModel = joke as JokeModel;
             newJoke.id = null;
 
             return new Promise((resolve, reject) => {
                 database.query(
-                'INSERT INTO jokes SET ?',
-                newJoke,
-                (err, results) =>
-                {
-                    err ? reject(err) : resolve(results)
-                });
+                    'INSERT INTO jokes SET ?',
+                    newJoke,
+                    (err, results) => {
+                        err ? reject(err) : resolve(results)
+                    });
             });
         }
 
-        getJoke(id : number) {
+        getJoke(id: number) {
             return new Promise((resolve, reject) => {
                 database.query(
-                'SELECT * FROM jokes WHERE id = ?',
-                [ id ],
-                (err, results) =>
-            {
-                err ? reject(err) : resolve(results[0])
-            });
+                    'SELECT * FROM jokes WHERE id = ?',
+                    [id],
+                    (err, results) => {
+                        err ? reject(err) : resolve(results[0])
+                    });
             }).then((user) => {
                 console.log(user);
                 return user as JokeModel;
@@ -43,11 +41,10 @@ export module Joke {
         getJokes() {
             return new Promise((resolve, reject) => {
                 database.query(
-                'SELECT * FROM jokes',
-                (err, results) =>
-            {
-                err ? reject(err) : resolve(results);
-            });
+                    'SELECT * FROM jokes',
+                    (err, results) => {
+                        err ? reject(err) : resolve(results);
+                    });
             }).then((jokes) => {
                 console.log(jokes);
                 return jokes;
@@ -59,11 +56,11 @@ export module Joke {
         getJokeCount(mysqlPool) {
             return new Promise((resolve, reject) => {
                 mysqlPool.query('SELECT COUNT(*) AS count FROM jokes', function (err, results) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(results[0].count);
-                }
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(results[0].count);
+                    }
                 });
             });
         }
