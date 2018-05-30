@@ -24,11 +24,15 @@ Run `npm run dev` to start server
 NOTE: * Requires Authorization
 
 ### Users
-- [ ] GET
-    - [x] GET/id*
-- [ ] POST 
-- [ ] PUT
-- [ ] DELETE*
+- [x] GET
+    - [x] /id*
+- [x] POST
+    - [x] /login
+    - [x] /
+- [x] PUT
+    - [x] /
+- [x] DELETE*
+    - [x] /
 
 ### Jokes
 - [x] GET

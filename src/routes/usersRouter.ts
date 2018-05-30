@@ -28,6 +28,7 @@ userRouter.get('/:userID', (req, res, next) => {
     }
 });
 
+//login or get jwt token
 userRouter.post("/login", (req,res,next) => {
     const user:UserModel = req.body;
 
@@ -42,6 +43,7 @@ userRouter.post("/login", (req,res,next) => {
     }
 });
 
+//create new user
 userRouter.post("/", (req, res, next) => {
     const newUser = req.body;
     if (newUser) {
@@ -55,6 +57,7 @@ userRouter.post("/", (req, res, next) => {
     }
 });
 
+//update user
 userRouter.put("/", (req, res, next) => {
     const updatedUser:UserModel = req.body;
 
@@ -70,6 +73,7 @@ userRouter.put("/", (req, res, next) => {
     }
 });
 
+//Delete user
 userRouter.delete("/", (req, res, next) => {
     const user:UserModel = req.body;
 
