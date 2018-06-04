@@ -46,11 +46,11 @@ NOTE: * Requires Authorization
 - [x] GET
     - [x] /id    
     - [x] /   
-- [] POST
+- [ ] POST
     - [ ] /   
-- [] PUT
+- [ ] PUT
     - [ ] /   
-- [] DELETE
+- [ ] DELETE
     - [ ] /   
 
 ### Comment
