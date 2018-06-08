@@ -29,15 +29,19 @@ app.get('/', (req, res, next) => {
     res.json("Welcome to Joke API! lol XD");
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log('Server is running on port:' + PORT);
-    // Test connection
-    database.getConnection((err, connection) => {
+
+//gets the database connection and starts the server.
+function getDataBaseConnection(){
+    database.getConnection((err, connection) =>{
         if(!err){
-            console.log('Connection has been established successfully.');
+            console.log("== Connected to Database.");
+            console.log("== Sever is listening on port: ", PORT);
+            app.listen(PORT);
         } else {
-            console.error('Unable to connect to the database:', err);
+            setTimeout(() => {
+               getDataBaseConnection(); 
+            }, 4000);
         }
     });
-})
+}
+getDataBaseConnection();
