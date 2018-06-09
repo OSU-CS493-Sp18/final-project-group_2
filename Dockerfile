@@ -13,7 +13,7 @@ COPY . .
 
 
 
-ENV PORT=8000
+ENV PORT=8001
 EXPOSE ${PORT}
 
 CMD [ "npm", "start" ]

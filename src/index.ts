@@ -11,7 +11,7 @@ import * as MySQL from 'mysql';
 
 // Initialize server
 const app = express();
-const PORT = 8000;
+const PORT = 8001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
@@ -32,12 +32,19 @@ app.get('/', (req, res, next) => {
 // Start server
 app.listen(PORT, () => {
     console.log('Server is running on port:' + PORT);
+    
     // Test connection
+    setTimeout(testConnection, 4000);
+});
+
+
+function testConnection(){
     database.getConnection((err, connection) => {
-        if(!err){
-            console.log('Connection has been established successfully.');
+        if(err){
+            console.log("== SQL Connection error:", err);
+            setTimeout(testConnection, 4000);
         } else {
-            console.error('Unable to connect to the database:', err);
+            console.log("== Connected to the SQL Database");
         }
     });
-});
+}

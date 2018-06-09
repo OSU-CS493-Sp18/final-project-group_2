@@ -6,7 +6,7 @@ services:
     container_name: joke-api
     restart: always
     ports:
-      - 8000:8000
+      - 8001:8001
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
