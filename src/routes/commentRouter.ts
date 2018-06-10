@@ -4,8 +4,8 @@ import {Comments} from '../controllers/commentController';
 
 export const commentsRouter = Router();
 
-commentsRouter.get("/", (req, res, next) => {
-
+commentsRouter.get("/:jokeId", (req, res, next) => {
+    
 });
 
 commentsRouter.get("/:userId", (req, res, next) => {
