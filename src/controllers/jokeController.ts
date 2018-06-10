@@ -83,7 +83,7 @@ export module Joke {
 
         delete(jokeId:number){
             return new Promise((resolve, reject) => {
-                database.query('DELETE FROM jokes WHERE Id == ?', [jokeId], (err, results) =>{
+                database.query('DELETE FROM jokes WHERE Id = ?', [jokeId], (err, results) =>{
                     return err ? reject(err) : resolve(results); 
                 });
             });

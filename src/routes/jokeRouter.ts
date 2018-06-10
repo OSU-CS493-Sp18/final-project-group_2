@@ -125,6 +125,7 @@ jokesRouter.delete('/:jokeId', (req,res,next) => {
             res.status(200).json("The joke was deleted");
         })
         .catch(err => {
+            console.log(err); 
             res.status(500).json("There was an error deleting the joke.");
         });
     } else {
