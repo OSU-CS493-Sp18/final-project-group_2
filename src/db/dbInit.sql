@@ -63,7 +63,7 @@ INSERT INTO `jokes` VALUES (1, "Really good joke", 4, 2, 1, "good, joke");
 INSERT INTO `jokes` VALUES (2, "I've got a really good UDP joke and i don't care if you get it.", 2, 2, 2, "udp, networking");
 INSERT INTO `jokes` VALUES (3, "I was going to go camping but it was too intents.", 3, 4, 3, "camping");
 INSERT INTO `jokes` VALUES (4, "Why don't they play poker in the jungle? To many Cheetas.", 3, 5, 3, "jungle, cheeta, poker");
-INSERT INTO `jokes` VALUES (5, "What daes a zombie vegitarian ead? Graaaaaains.", 3, 3, 3, "zombie, vegitarian");
+INSERT INTO `jokes` VALUES (5, "What daes a zombie vegitarian eat? Graaaaaains.", 3, 3, 3, "zombie, vegitarian");
 INSERT INTO `jokes` VALUES (6, "My new thesaurus is terrible. Not only that, but its also terrible.", 3, 5, 3, "thesaurus, terrible");
 INSERT INTO `jokes` VALUES (7, "My girlfriend thought I'd never be able to make a car out of spaghetti, You should have seen her face when i drove pasta!", 3, 5, 3, "car, pasta");
 INSERT INTO `jokes` VALUES (8, "What do you call the wife of a hippi? A Mississippi", 3, 4, 3, "hippi");

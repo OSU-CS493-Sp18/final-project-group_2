@@ -72,5 +72,21 @@ export module Joke {
                 });
             });
         }
+
+        updateJoke(jokeId:number, joke:JokeModel){
+            return new Promise((resolve, reject) => {
+                database.query('UPDATE jokes SET ? WHERE id = ?', [joke, jokeId], (err, results) => {
+                    return err ? reject(err) : resolve(results);
+                });
+            });
+        } 
+
+        delete(jokeId:number){
+            return new Promise((resolve, reject) => {
+                database.query('DELETE FROM jokes WHERE Id == ?', [jokeId], (err, results) =>{
+                    return err ? reject(err) : resolve(results); 
+                });
+            });
+        }
     }
 }

@@ -37,7 +37,7 @@ NOTE: * Requires Authorization
 ### Jokes
 - [x] GET
     - [x] GET/id
-    - [ ] GET/:keyword
+    - [x] GET/:keyword
 - [x] POST*
 - [ ] PUT*
 - [ ] DELETE*
