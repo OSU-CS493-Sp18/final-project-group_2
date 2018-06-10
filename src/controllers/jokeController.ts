@@ -69,12 +69,9 @@ export module Joke {
             });
         }
 
-        getJokeByKeyword(keyword: string) {
+        getJokesByKeyword(keyword: string) {
             return new Promise((resolve, reject) => {
-                database.query(
-                    'SELECT * FROM jokes WHERE keyword LIKE %?%',
-                    [keyword],
-                    (err, results) => {
+                database.query('SELECT * FROM jokes WHERE keywords LIKE ?', ['%' + keyword + '%'], (err, results) => {
                         err ? reject(err) : resolve(results[0])
                     });
             }).then((joke) => {
@@ -129,6 +126,7 @@ export module Joke {
             });
         }
 
+        
         getUserByname(username: string) {
             return new Promise((resolve, reject) => {
                 database.query(
@@ -156,10 +154,8 @@ export module Joke {
                                 if(!dbJoke || dbJoke.userId != dbUser.id)
                                     reject(null);
                                 else{
-                                    database.query("DELETE FROM jokes WHERE id=?", [dbJoke.id], (err, results) => {
-                                        err ? reject(err) : resolve(results);
-                                    });
-                                }
+                                    return dbUser;
+                                    }
                             });
 
                         });
@@ -178,7 +174,5 @@ export module Joke {
                 });
             }) as Promise<string | object>;
         }
-    
-    
     }
 }

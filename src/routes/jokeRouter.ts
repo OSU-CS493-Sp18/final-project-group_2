@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { matchedData } from 'express-validator/filter';
 import { validateAgainstSchema, extractValidFields } from '../lib/validation';
 import { Joke } from '../controllers/jokeController';
-import { UserModel } from '../models/users';
+import {UserModel} from '../models/users';
 
 export const jokesRouter = Router();
 const jokesController = new Joke.JokeController();
@@ -18,8 +18,8 @@ const jokeSchema = {
 /// POST joke
 jokesRouter.post('/', (req, res, next) => {
     console.log(req.body);
-    if(validateAgainstSchema(req.body, jokeSchema)){
-        let joke = extractValidFields(req.body,jokeSchema) as AddJokeModel;
+    const joke:AddJokeModel = req.body;
+    if(joke){
         let result = jokesController.addJoke(joke)
             .then((result) => {
             if (result) {
@@ -40,7 +40,23 @@ jokesRouter.post('/', (req, res, next) => {
     }
 });
 
-/// GET joke
+//get jokes by keyword
+jokesRouter.get('/search/:keyword', (req, res, next) => {
+    const keyword = req.params['keyword'];
+    if(keyword){
+        jokesController.getJokesByKeyword(keyword)
+        .then(results => {
+            res.status(200).json(results);
+        })
+        .catch(err => {
+            res.status(500).json({error: "There was an error getting the jokes"});
+        });
+    } else {
+        next();
+    }
+});
+
+// GET joke
 jokesRouter.get('/id/:jokeID', (req, res, next) => {
     const jokeID = parseInt(req.params.jokeID);
     if(jokeID){
@@ -61,30 +77,6 @@ jokesRouter.get('/id/:jokeID', (req, res, next) => {
     } else {
         res.status(400).json({
             error: "Bad joke id lulz"
-        });
-    }
-});
-
-/// GET joke
-jokesRouter.get('/keyword/:jokeKeyword', (req, res, next) => {
-    const jokeKeyword = req.params.jokeKeyword;
-    if(jokeKeyword){
-        let joke = jokesController.getJokeByKeyword(jokeKeyword)
-        .then((joke) => {
-        if (joke) {
-            res.status(200).json(joke);
-        } else {
-            next();
-        }
-        })
-        .catch((err) => {
-            res.status(500).json({
-                error: "Unable to fetch jokes with that keyword.  Please try again later. hah ah xd"
-            });
-        });
-    } else {
-        res.status(400).json({
-            error: "Bad joke keyword lulz"
         });
     }
 });
