@@ -39,7 +39,23 @@ jokesRouter.post('/', (req, res, next) => {
     }
 });
 
-/// GET joke
+//get jokes by keyword
+jokesRouter.get('/search/:keyword', (req, res, next) => {
+    const keyword = req.params['keyword'];
+    if(keyword){
+        jokesController.getJokesByKeyword(keyword)
+        .then(results => {
+            res.status(200).json(results);
+        })
+        .catch(err => {
+            res.status(500).json({error: "There was an error getting the jokes"});
+        });
+    } else {
+        next();
+    }
+});
+
+// GET joke
 jokesRouter.get('/:jokeID', (req, res, next) => {
     const jokeID = parseInt(req.params.jokeID);
     if(jokeID){
@@ -79,6 +95,7 @@ jokesRouter.get('/', (req, res, next) => {
         });
     });
 });
+
 
 
 jokesRouter.put('/', (req,res,next) => {

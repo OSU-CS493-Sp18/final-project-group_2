@@ -64,5 +64,13 @@ export module Joke {
                 });
             });
         }
+
+        getJokesByKeyword(keyWord:string){
+            return new Promise((resolve, reject) => {
+                database.query('SELECT * FROM jokes WHERE keywords LIKE ?', ['%' + keyWord + '%'], (err, results) => {
+                    return err ? reject(err) : resolve(results);
+                });
+            });
+        }
     }
 }
