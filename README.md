@@ -39,8 +39,8 @@ NOTE: * Requires Authorization
     - [x] GET/id
     - [x] GET/:keyword
 - [x] POST*
-- [ ] PUT*
-- [ ] DELETE*
+- [x] PUT*
+- [x] DELETE*
 
 ### Categories
 - [x] GET
