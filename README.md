@@ -56,9 +56,9 @@ NOTE: * Requires Authorization
 ### Comment
 - [ ] GET
     - [ ] GET/:id
-    - [ ] GET/:UserID*
-    - [ ] GET/:JokeID
+    - [ ] GET/:UserId*
+    - [ ] GET/:JokeId
 - [ ] POST*
 - [ ] PUT*
-- [ ] DELET*
+- [ ] DELETE*
 
