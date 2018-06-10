@@ -24,18 +24,17 @@ CREATE TABLE `jokes` (
     `catId` INT NOT NULL,
     `dadRating` INT NOT NULL,
     `userId` INT NOT NULL,
+    `keywords` VARCHAR(255) NOT NULL,
     FOREIGN KEY(`userId`) REFERENCES `users`(`id`), 
-    `keywords` VARCHAR(255) NOT NULL
     ON DELETE CASCADE,
     FOREIGN KEY(`catId`) REFERENCES `categories`(`id`), 
-    `keywords` VARCHAR(255) NOT NULL
     ON DELETE CASCADE
     
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `comments`;
 
-CREATE TABLE `comment` (
+CREATE TABLE `comments` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `cmnt` TEXT NOT NULL,
     `jokeId` INT NOT NULL,
@@ -51,7 +50,6 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (1, "cheese", "blahblah", "my@email.com");
 INSERT INTO `users` VALUES (2, "linus", "stuff and things", "linus.torvald@linux.net");
 INSERT INTO `users` VALUES (3, "ultimatedad", "Puntastic", "Puns@pun.net");
-UNLOCK TABLES;
 
 LOCK TABLES `categories` WRITE;
 INSERT INTO `categories` VALUES (1, "cats");
@@ -59,7 +57,6 @@ INSERT INTO `categories` VALUES (2, "computers");
 INSERT INTO `categories` VALUES (3, "Puns");
 INSERT INTO `categoreis` VALUES (4, "sigh...");
 INSERT INTO `categories` VALUES (5, "Knock Knock");
-UNLOCK TABLES;
 
 LOCK TABLES `jokes` WRITE;
 INSERT INTO `jokes` VALUES (1, "Really good joke", 4, 2, 1, "good, joke");
@@ -73,4 +70,14 @@ INSERT INTO `jokes` VALUES (8, "What do you call the wife of a hippi? A Mississi
 INSERT INTO `jokes` VALUES (9, "What is a programmer's favorit hang out place? Foo Bar", 2, 2, 2, "foo, bar, programmer");
 INSERT INTO `jokes` VALUES (10, "Knock Knock, Who's There, Interupting Cow, Interupting Cow.....MOOOOOOOOOOOOO!", 5, 1, 1, "cow, interrupting");
 INSERT INTO `jokes` VALUES (11, "What did the cat say when he lost all his moeny? I'm Paw!", 1, 3, 1, "poor, lost, money, cheeta");
+
+LOCK TABLES `comments` WRITE;
+INSERT INTO `comments` VALUES (1, "Is this even a joke? I would not merge this joke into the API.", 1, 2,1);
+INSERT INTO `comments` VALUES (2, "Nice! How will I know if i don't get the joke?", 2, 1, 4);
+INSERT INTO `comments` VALUES (3, "Ha! Thats a good one!", 6, 2, 4);
+INSERT INTO `comments` VALUES (4, "Wow, This joke makes me loose faith in humanity...", 11, 2,1);
+INSERT INTO `comments` VALUES (5, "Missishippi how silly.", 8, 1, 3);
+
 UNLOCK TABLES;
+
+
