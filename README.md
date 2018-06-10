@@ -54,11 +54,10 @@ NOTE: * Requires Authorization
     - [ ] /   
 
 ### Comment
-- [ ] GET
-    - [ ] GET/:id
-    - [ ] GET/:UserId*
-    - [ ] GET/:JokeId
-- [ ] POST*
-- [ ] PUT*
-- [ ] DELETE*
+- [x] GET
+    - [x] GET/:UserId*
+    - [x] GET/:JokeId
+- [x] POST*
+- [x] PUT*
+- [x] DELETE*
 
