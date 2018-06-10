@@ -7,6 +7,8 @@ import * as cors from 'cors';
 import * as bodyParser from 'body-parser'
 import { checkToken } from './controllers/tokenController';
 import * as MySQL from 'mysql';
+import { categoriesRouter } from './routes/categoryRouter';
+import { commentsRouter } from './routes/commentRouter';
 // Reference: https://gorrion.io/blog/node-express-js-typescript-sequelize/
 
 // Initialize server
@@ -23,6 +25,8 @@ console.log("=== PASS == " + process.env.MYSQL_PASSWORD);
 // Register routes
 app.use('/users', userRouter);
 app.use('/jokes', jokesRouter);
+app.use('/categories', categoriesRouter);
+app.use('/comments', commentsRouter);
 
 // Landing Page
 app.get('/', (req, res, next) => {

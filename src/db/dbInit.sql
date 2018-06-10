@@ -25,9 +25,9 @@ CREATE TABLE `jokes` (
     `dadRating` INT NOT NULL,
     `userId` INT NOT NULL,
     `keywords` VARCHAR(255) NOT NULL,
-    FOREIGN KEY(`userId`) REFERENCES `users`(`id`), 
+    FOREIGN KEY(`userId`) REFERENCES `users`(`id`)
     ON DELETE CASCADE,
-    FOREIGN KEY(`catId`) REFERENCES `categories`(`id`), 
+    FOREIGN KEY(`catId`) REFERENCES `categories`(`id`) 
     ON DELETE CASCADE
     
 ) ENGINE=InnoDB;
@@ -55,13 +55,13 @@ LOCK TABLES `categories` WRITE;
 INSERT INTO `categories` VALUES (1, "cats");
 INSERT INTO `categories` VALUES (2, "computers");
 INSERT INTO `categories` VALUES (3, "Puns");
-INSERT INTO `categoreis` VALUES (4, "sigh...");
+INSERT INTO `categories` VALUES (4, "sigh...");
 INSERT INTO `categories` VALUES (5, "Knock Knock");
 
 LOCK TABLES `jokes` WRITE;
 INSERT INTO `jokes` VALUES (1, "Really good joke", 4, 2, 1, "good, joke");
-INSERT INTO `jokes` VALUES (2, "I've got a really good UDP joke and i don't care if you get it.", 2, 2, 2);
-INSERT INTO `jokes` VALUES (3, "I was going to go camping but it was too intents.", 3, 4, 3, "udp, networking");
+INSERT INTO `jokes` VALUES (2, "I've got a really good UDP joke and i don't care if you get it.", 2, 2, 2, "udp, networking");
+INSERT INTO `jokes` VALUES (3, "I was going to go camping but it was too intents.", 3, 4, 3, "camping");
 INSERT INTO `jokes` VALUES (4, "Why don't they play poker in the jungle? To many Cheetas.", 3, 5, 3, "jungle, cheeta, poker");
 INSERT INTO `jokes` VALUES (5, "What daes a zombie vegitarian ead? Graaaaaains.", 3, 3, 3, "zombie, vegitarian");
 INSERT INTO `jokes` VALUES (6, "My new thesaurus is terrible. Not only that, but its also terrible.", 3, 5, 3, "thesaurus, terrible");
