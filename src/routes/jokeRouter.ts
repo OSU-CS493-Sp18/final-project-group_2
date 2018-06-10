@@ -1,8 +1,9 @@
-import { AddJokeModel } from './../models/jokes';
+import { AddJokeModel, JokeModel } from './../models/jokes';
 import { Router } from 'express';
 import { matchedData } from 'express-validator/filter';
 import { validateAgainstSchema, extractValidFields } from '../lib/validation';
 import { Joke } from '../controllers/jokeController';
+import { UserModel } from '../models/users';
 
 export const jokesRouter = Router();
 const jokesController = new Joke.JokeController();
@@ -40,16 +41,17 @@ jokesRouter.post('/', (req, res, next) => {
 });
 
 /// GET joke
-jokesRouter.get('/:jokeID', (req, res, next) => {
+jokesRouter.get('/id/:jokeID', (req, res, next) => {
     const jokeID = parseInt(req.params.jokeID);
     if(jokeID){
-        let joke = jokesController.getJoke(jokeID)
+        let joke = jokesController.getJokeById(jokeID)
         .then((joke) => {
-        if (joke) {
-            res.status(200).json(joke);
-        } else {
-            next();
-        }
+        if(joke)
+            if (!isNaN(joke)) { //Checking if the return is a number or not
+                res.status(200).json(joke);
+            } else {
+                next();
+            }
         })
         .catch((err) => {
             res.status(500).json({
@@ -59,6 +61,30 @@ jokesRouter.get('/:jokeID', (req, res, next) => {
     } else {
         res.status(400).json({
             error: "Bad joke id lulz"
+        });
+    }
+});
+
+/// GET joke
+jokesRouter.get('/keyword/:jokeKeyword', (req, res, next) => {
+    const jokeKeyword = req.params.jokeKeyword;
+    if(jokeKeyword){
+        let joke = jokesController.getJokeByKeyword(jokeKeyword)
+        .then((joke) => {
+        if (joke) {
+            res.status(200).json(joke);
+        } else {
+            next();
+        }
+        })
+        .catch((err) => {
+            res.status(500).json({
+                error: "Unable to fetch jokes with that keyword.  Please try again later. hah ah xd"
+            });
+        });
+    } else {
+        res.status(400).json({
+            error: "Bad joke keyword lulz"
         });
     }
 });
@@ -80,11 +106,32 @@ jokesRouter.get('/', (req, res, next) => {
     });
 });
 
-
 jokesRouter.put('/', (req,res,next) => {
-
+    const user:UserModel = req.body.user;
+    const updatedJoke:JokeModel = req.body.joke;     
+    if(updatedJoke) {
+        jokesController.updateJoke(updatedJoke, user).then(results => {
+            console.log(results);
+            res.status(201).json({ msg: "Updated joke in database" });
+        }).catch(err => {
+            res.status(500).json({ error: "Failed to update user" });
+        });
+    } else {
+        next();
+    }
 });
 
 jokesRouter.delete('/', (req,res,next) => {
-    
+    const user:UserModel = req.body.user;
+    const joke:JokeModel = req.body.joke;    
+    if(joke) {
+        jokesController.deleteJoke(joke, user).then(results => {
+            res.status(204).json({ msg: "deleted joke in database" });
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json({ error: "Failed to delete joke" });
+        });
+    } else {
+        next();
+    }
 });
