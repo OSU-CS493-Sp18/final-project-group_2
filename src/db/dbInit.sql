@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS `comments`;
 
 CREATE TABLE `comments` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `cmnt` TEXT NOT NULL,
+    `comment` TEXT NOT NULL,
     `jokeId` INT NOT NULL,
     `userId` INT NOT NULL,
     `dadRating` INT NOT NULL,

@@ -13,9 +13,9 @@ export module Comments {
             });
         }
 
-        update(comment: commentModel){
+        update(id: number, comment: addCommentModel){
             return new Promise((resolve, reject) => {
-                database.query("UPDATE comments SET ? WHERE id = ?", [comment, comment.id], (err, result) => {
+                database.query("UPDATE comments SET ? WHERE id = ?", [comment, id], (err, result) => {
                     return err ? reject(err) : resolve(result);
                 })
             });

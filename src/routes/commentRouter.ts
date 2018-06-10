@@ -1,11 +1,12 @@
 import {commentModel, addCommentModel} from '../models/comment';
 import { Router } from 'express';
 import {Comments} from '../controllers/commentController';
+import { parse } from 'path';
 
 export const commentsRouter = Router();
 const commentsController = new Comments.CommentController();
 
-commentsRouter.get("/:jokeId", (req, res, next) => {
+commentsRouter.get("/joke/:jokeId", (req, res, next) => {
     const id = parseInt(req.params['jokeId']);
     if(id) {
         commentsController.getByJoke(id)
@@ -43,6 +44,7 @@ commentsRouter.post("/", (req, res, next) => {
             res.status(201).json({msg: "Comment Added!"});
         })
         .catch(err => {
+            console.log(err);
             res.status(500).json({error: "Failed to add comment"});
         });
     } else {
@@ -51,10 +53,11 @@ commentsRouter.post("/", (req, res, next) => {
 });
 
 commentsRouter.put("/:commentId", (req, res, next) => {
-    const comment:commentModel = req.body;
+    const id = parseInt(req.params['commentId']);
+    const comment:addCommentModel = req.body;
     
-    if(comment){
-        commentsController.update(comment)
+    if(comment && id){
+        commentsController.update(id, comment)
         .then(result => {
             res.status(201).json({msg: "Your comment was updated"});
         })
