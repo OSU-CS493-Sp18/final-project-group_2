@@ -1,4 +1,4 @@
-import { categoryModel } from '../models/category';
+import { categoryModel, addCategoryModel } from '../models/category';
 import { Router } from 'express';
 import { Categories } from '../controllers/categoryController';
 export const categoriesRouter = Router();

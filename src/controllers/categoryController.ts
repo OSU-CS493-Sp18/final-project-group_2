@@ -1,7 +1,7 @@
 import * as MySQL from 'mysql';
 import { database } from '../db/dbConfig';
 import { reject } from 'bluebird';
-import { categoryModel } from '../models/category';
+import { categoryModel, addCategoryModel } from '../models/category';
 
 export module Categories {
     export class CategoryController {
