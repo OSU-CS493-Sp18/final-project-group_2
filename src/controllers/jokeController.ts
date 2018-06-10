@@ -4,8 +4,8 @@ import { resolve } from 'url';
 import * as MySQL from 'mysql';
 import { database } from '../db/dbConfig';
 import { matchedData } from 'express-validator/filter';
-import { UserModel } from '../models/users';
 import * as bcrypt from 'bcrypt';
+import { UserModel } from '../models/users';
 
 export module Joke {
     export class JokeController {
@@ -97,7 +97,7 @@ export module Joke {
                                     if(!dbJoke || dbJoke.userId != dbUser.id)
                                         reject(null);
                                     else{
-                                        database.query("UPDATE jokes SET joke = ?, catId = ?, dadRating = ?, keywords = ? WHERE id=?", [joke.joke], [joke.catId], [joke.dadRating], [joke.keywords], [dbJoke.id], (err, results) => {
+                                        database.query("UPDATE jokes SET joke = ?, catId = ?, dadRating = ?, keywords = ? WHERE id=?", [joke.joke, joke.catId, joke.dadRating, joke.keywords, dbJoke.id], (err, results) => {
                                             err ? reject(err) : resolve(results);
                                         });
                                     }
@@ -114,7 +114,7 @@ export module Joke {
             return this.verifyJwt(user.token).then((decoded: any) => {
                 return new Promise((resolve, reject) => {
                     this.validateJokeUser(joke.id, user).then(dbUser => {
-                        if (!dbUser || !bcrypt.compareSync(user.pass, dbUser.pass)) {
+                        if (!dbUser) {
                             reject(null);
                         } else {
                             database.query("DELETE FROM jokes WHERE id=?", [joke.id], (err, results) => {
@@ -149,7 +149,6 @@ export module Joke {
                     if (!dbUser || !bcrypt.compareSync(user.pass, dbUser.pass)) {
                         reject(null);
                     } else {
-                        return new Promise((resolve, reject) => {
                             this.getJokeById(jokeId).then(dbJoke =>{
                                 if(!dbJoke || dbJoke.userId != dbUser.id)
                                     reject(null);
@@ -157,8 +156,6 @@ export module Joke {
                                     return dbUser;
                                     }
                             });
-
-                        });
                     }
                 });
             })
