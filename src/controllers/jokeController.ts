@@ -12,19 +12,26 @@ export module Joke {
         private saltRounds = 10;
         private jwtSecret = 'jet_fuel_cant_melt_steel_dreams';
 
-        addJoke(joke: AddJokeModel) {
+
+        addJoke(joke: AddJokeModel, user: UserModel) {
             var newJoke: JokeModel = joke as JokeModel;
             newJoke.id = null;
 
-            return new Promise((resolve, reject) => {
-                database.query(
-                    'INSERT INTO jokes SET ?',
-                    newJoke,
-                    (err, results) => {
-                        err ? reject(err) : resolve(results)
+            return this.verifyJwt(user.token).then((decoded: any) => {
+                return new Promise((resolve, reject) => {
+                    this.getUserByname(user.username).then(dbUser => {
+                        if (!dbUser || !bcrypt.compareSync(user.pass, dbUser.pass)) {
+                            reject(null);
+                        } else {
+                            database.query("INSERT INTO jokes SET ?", [newJoke], (err, results) => {
+                                err ? reject(err) : resolve(results);
+                            });
+                        }
                     });
+                });
             });
         }
+
 
         getJokeById(id: number) {
             return new Promise((resolve, reject) => {
@@ -113,7 +120,7 @@ export module Joke {
         deleteJoke(joke: JokeModel, user: UserModel) {
             return this.verifyJwt(user.token).then((decoded: any) => {
                 return new Promise((resolve, reject) => {
-                    this.validateJokeUser(joke.id, user).then(dbUser => {
+                    this.validateChangeUser(joke.id, user).then(dbUser => {
                         if (!dbUser) {
                             reject(null);
                         } else {
@@ -143,7 +150,7 @@ export module Joke {
             })
         }
 
-        validateJokeUser(jokeId: number, user: UserModel){
+        validateChangeUser(jokeId: number, user: UserModel){
             return new Promise((resolve, reject) => {
                 this.getUserByname(user.username).then(dbUser => {
                     if (!dbUser || !bcrypt.compareSync(user.pass, dbUser.pass)) {

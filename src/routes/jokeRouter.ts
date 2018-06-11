@@ -18,9 +18,11 @@ const jokeSchema = {
 /// POST joke
 jokesRouter.post('/', (req, res, next) => {
     console.log(req.body);
-    const joke:AddJokeModel = req.body;
+    const joke:AddJokeModel = req.body.joke;
+    const user:UserModel = req.body.user;
+
     if(joke){
-        let result = jokesController.addJoke(joke)
+        let result = jokesController.addJoke(joke, user)
             .then((result) => {
             if (result) {
                 res.status(201).json(result);
