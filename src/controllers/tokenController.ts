@@ -25,8 +25,17 @@ export const checkToken: (() => RequestHandler) = (() => (req, res, next) => {
             .send({message: 'Invalid user, does not have correct login'});
         }
         // Otherwise valid user & continue
+
         next();
     });
 });
 
+
+export const checkUser: (() => RequestHandler) = (() => (req, res, next) => {
+    let userIdReq = parseInt(req.params['userId']);
+    let userIdActual = req.userId
+    if(userId){
+
+    }
+})
 

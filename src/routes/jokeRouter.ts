@@ -95,7 +95,7 @@ jokesRouter.get('/', (req, res, next) => {
     });
 });
 
-jokesRouter.put('/', (req,res,next) => {
+jokesRouter.put('/:userId', (req,res,next) => {
     const updatedJoke:JokeModel = req.body.joke;     
     if(updatedJoke) {
         jokesController.updateJoke(updatedJoke).then(results => {
@@ -109,7 +109,7 @@ jokesRouter.put('/', (req,res,next) => {
     }
 });
 
-jokesRouter.delete('/', (req,res,next) => {
+jokesRouter.delete('/:userId', (req,res,next) => {
     const joke:JokeModel = req.body.joke;    
     if(joke) {
         jokesController.deleteJoke(joke).then(results => {

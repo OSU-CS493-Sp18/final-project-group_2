@@ -18,6 +18,9 @@ compile with `tsc -p .`
 Run `npm start` to compile ts
 Run `npm run dev` to start server
 
+### Running Notes
+If you do not have type script installed but you do have docker and docker-compose installed you can run this application by running docker-compose up --build. To do this you need not follow any of the previous steps.
+
 
 ## TO DO's
 
