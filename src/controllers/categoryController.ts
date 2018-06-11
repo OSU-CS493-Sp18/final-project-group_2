@@ -21,9 +21,9 @@ export module Categories {
             });
         }
 
-        delete(cate: categoryModel) {
+        delete(cate: Number) {
             return new Promise((resolve, reject) => {
-                database.query("DELETE FROM categories WHERE name=?", [cate.name], (err, result) => {
+                database.query("DELETE FROM categories WHERE id=?", [cate], (err, result) => {
                     err ? reject(err) : resolve(result);
                 });
             });

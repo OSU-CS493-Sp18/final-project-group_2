@@ -36,8 +36,8 @@ NOTE: * Requires Authorization
 
 ### Jokes
 - [x] GET
-    - [x] GET/id
-    - [x] GET/:keyword
+    - [x] GET/id/:id
+    - [x] GET/search/:keyword
 - [x] POST*
 - [x] PUT*
 - [x] DELETE*
@@ -46,12 +46,12 @@ NOTE: * Requires Authorization
 - [x] GET
     - [x] /id    
     - [x] /   
-- [ ] POST
-    - [ ] /   
-- [ ] PUT
-    - [ ] /   
-- [ ] DELETE
-    - [ ] /   
+- [X] POST
+    - [X] /   
+- [X] PUT
+    - [X] /   
+- [X] DELETE
+    - [X] /   
 
 ### Comment
 - [x] GET
