@@ -62,14 +62,9 @@ jokesRouter.get('/search/:keyword', (req, res, next) => {
 jokesRouter.get('/id/:jokeID', (req, res, next) => {
     const jokeID = parseInt(req.params.jokeID);
     if(jokeID){
-        let joke = jokesController.getJokeById(jokeID)
+        jokesController.getJokeById(jokeID)
         .then((joke) => {
-        if(joke)
-            if (!isNaN(joke)) { //Checking if the return is a number or not
-                res.status(200).json(joke);
-            } else {
-                next();
-            }
+            res.status(200).json(joke);
         })
         .catch((err) => {
             res.status(500).json({
@@ -101,10 +96,9 @@ jokesRouter.get('/', (req, res, next) => {
 });
 
 jokesRouter.put('/', (req,res,next) => {
-    const user:UserModel = req.body.user;
     const updatedJoke:JokeModel = req.body.joke;     
     if(updatedJoke) {
-        jokesController.updateJoke(updatedJoke, user).then(results => {
+        jokesController.updateJoke(updatedJoke).then(results => {
             console.log(results);
             res.status(201).json({ msg: "Updated joke in database" });
         }).catch(err => {
@@ -116,11 +110,10 @@ jokesRouter.put('/', (req,res,next) => {
 });
 
 jokesRouter.delete('/', (req,res,next) => {
-    const user:UserModel = req.body.user;
     const joke:JokeModel = req.body.joke;    
     if(joke) {
-        jokesController.deleteJoke(joke, user).then(results => {
-            res.status(204).json({ msg: "deleted joke in database" });
+        jokesController.deleteJoke(joke).then(results => {
+            res.status(204).json({ msg: "deleted joke in database"});
         }).catch(err => {
             console.log(err);
             res.status(500).json({ error: "Failed to delete joke" });

@@ -67,7 +67,7 @@ export module Joke {
             });
         }
 
-        deleteJoke(joke: JokeModel, user: UserModel) {
+        deleteJoke(joke: JokeModel) {
             return new Promise((resolve, reject) => {
                 database.query("DELETE FROM jokes WHERE id=?", [joke.id], (err, results) => {
                     err ? reject(err) : resolve(results);
