@@ -9,9 +9,9 @@ import { UserModel } from '../models/users';
 
 export module Joke {
     export class JokeController {
-        addJoke(joke: AddJokeModel, user: UserModel) {
+        addJoke(joke: AddJokeModel) {
             return new Promise((resolve, reject) => {
-                database.query("INSERT INTO jokes SET ?", [joke], (err, results) => {
+                database.query("INSERT INTO jokes (joke,catId,dadRating,userId,keywords) VALUES (?, ?, ?, ?, ?)", [joke.joke, joke.catId, joke.dadRating, joke.userId, joke.keywords], (err, results) => {
                     return err ? reject(err) : resolve(results);
                 });
             });
@@ -23,7 +23,7 @@ export module Joke {
                 database.query(
                     'SELECT * FROM jokes WHERE id = ?',
                     [id],
-                    (err, results) => {
+                    (err, results:JokeModel) => {
                         err ? reject(err) : resolve(results[0])
                     });
             });
