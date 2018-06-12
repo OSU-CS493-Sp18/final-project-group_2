@@ -23,7 +23,6 @@ export module Users {
         createUser(user: AddUserModel) {
             return new Promise((resolve, reject) => {
                 user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
-                user.dadRating = Number(user.dadRating);
 
                 database.query(`INSERT INTO users SET ?`, user, (err, results) => {
                     console.log(err);
@@ -85,7 +84,6 @@ export module Users {
         updateUser(user: UserModel) {
             return this.verifyJwt(user.token).then((decoded: any) => {
                 delete user.token;
-                user.dadRating = Number(user.dadRating);
                 user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
 
                 console.log(user.pass);

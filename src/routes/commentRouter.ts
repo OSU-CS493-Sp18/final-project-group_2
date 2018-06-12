@@ -2,6 +2,7 @@ import {commentModel, addCommentModel} from '../models/comment';
 import { Router } from 'express';
 import {Comments} from '../controllers/commentController';
 import { parse } from 'path';
+import { checkToken, checkUser } from '../controllers/tokenController';
 
 export const commentsRouter = Router();
 const commentsController = new Comments.CommentController();
@@ -20,7 +21,7 @@ commentsRouter.get("/joke/:jokeId", (req, res, next) => {
     }
 });
 
-commentsRouter.get("/:userId", (req, res, next) => {
+commentsRouter.get("/:userId", checkToken, checkUser, (req, res, next) => {
     const id = parseInt(req.params['userId']);
     if(id){
         commentsController.getByUser(id)
