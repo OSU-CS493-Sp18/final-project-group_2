@@ -20,8 +20,8 @@ const jokeSchema = {
 /// POST joke
 jokesRouter.post('/', checkToken, checkUser, (req, res, next) => {
     console.log(req.body);
-    const joke:AddJokeModel = req.body.joke;
-    
+    const joke:AddJokeModel = req.body;
+
     if(joke){
         let result = jokesController.addJoke(joke)
             .then((result) => {
@@ -65,7 +65,13 @@ jokesRouter.get('/:jokeID', (req, res, next) => {
     if(jokeID){
         jokesController.getJokeById(jokeID)
         .then((joke) => {
-            res.status(200).json(joke);
+            if (joke) {
+                res.status(200).json(joke);
+            } else {
+                res.status(204).json({
+                    error: "No Content Found"
+                });
+            }
         })
         .catch((err) => {
             res.status(500).json({
@@ -97,12 +103,13 @@ jokesRouter.get('/', (req, res, next) => {
 });
 
 jokesRouter.put('/', checkToken, checkUser, (req,res,next) => {
-    const updatedJoke:JokeModel = req.body.joke;     
+    const updatedJoke:JokeModel = req.body;     
     if(updatedJoke) {
         jokesController.updateJoke(updatedJoke).then(results => {
             console.log(results);
             res.status(201).json({ msg: "Updated joke in database" });
         }).catch(err => {
+            console.log(err);
             res.status(500).json({ error: "Failed to update user" });
         });
     } else {
@@ -111,7 +118,7 @@ jokesRouter.put('/', checkToken, checkUser, (req,res,next) => {
 });
 
 jokesRouter.delete('/', checkToken, checkUser, (req,res,next) => {
-    const joke:JokeModel = req.body.joke;    
+    const joke:JokeModel = req.body;    
     if(joke) {
         jokesController.deleteJoke(joke).then(results => {
             res.status(204).json({ msg: "deleted joke in database"});

@@ -1,529 +1,632 @@
 {
-	"id": "b130044b-150b-4cf9-b2d0-ec72c11474bc",
-	"name": "Final Assignment",
-	"description": "",
-	"auth": null,
-	"events": null,
-	"variables": [],
-	"order": [],
-	"folders_order": [
-		"91e37cfc-0c10-4931-a7c9-1e8cc2697079",
-		"f766cdd0-afb3-4210-96f7-b1885392ed50",
-		"e72b8016-036f-4abb-9e6c-61f417ee5273",
-		"658a6f2b-84ec-4afa-8b2b-1a764a76512a"
-	],
-	"folders": [
+	"info": {
+		"_postman_id": "a9fb3558-fb1c-4024-b451-ff1bf4d6273e",
+		"name": "Final Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "658a6f2b-84ec-4afa-8b2b-1a764a76512a",
-			"name": "Cataegories",
-			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "b130044b-150b-4cf9-b2d0-ec72c11474bc",
-			"folder": null,
-			"order": [
-				"72e0a959-6c34-4183-8bbd-71aed8edd1a5",
-				"91f1e4c8-7096-41b5-8995-6a5c1cd98891",
-				"d1537e09-bf5a-4e13-b286-a24c740e8e23",
-				"9ffebac1-d5d8-4912-aa92-e342f52e6e77"
-			],
-			"folders_order": []
-		},
-		{
-			"id": "91e37cfc-0c10-4931-a7c9-1e8cc2697079",
 			"name": "Comments",
 			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "b130044b-150b-4cf9-b2d0-ec72c11474bc",
-			"folder": null,
-			"order": [
-				"25ea0882-944b-4502-8cf0-9a50a98e40f8",
-				"d6a72bc7-43e8-46ee-a72f-7363ff416c66",
-				"b8d55e47-eff2-4feb-bb55-2edf19b897b5",
-				"62b5203a-a76a-4481-b536-1f34497dedfc",
-				"3f381dd1-32e4-42e7-9941-327bb038c12a"
-			],
-			"folders_order": []
+			"item": [
+				{
+					"name": "Get Comment by User Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/comments/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"comments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment by joke id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/comments/joke/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"comments",
+								"joke",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"comment\": \"This joke is stupid\",\n  \"jokeId\": 3,\n  \"userId\": 2,\n  \"dadRating\": 0\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/comments",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"comment\": \"This joke is stupid and its really dumb\",\n  \"jokeId\": 3,\n  \"userId\": 2,\n  \"dadRating\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/comments/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"comments",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8001/comments/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"comments",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"id": "f766cdd0-afb3-4210-96f7-b1885392ed50",
 			"name": "Jokes",
 			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "b130044b-150b-4cf9-b2d0-ec72c11474bc",
-			"folder": null,
-			"order": [
-				"a2db425d-ef14-4e90-ba83-d2e3d3994b1c",
-				"5779b8f5-3e6a-4b5d-ae7d-ec0de3e95f0e",
-				"c3c732d3-228e-47cf-b05a-e52033ba6810",
-				"738ec617-d5fe-4e17-8ee0-c2da9a3846ef",
-				"7f7e0f24-a6f1-4660-a3c1-e1cffd7812d8",
-				"d13cea50-b759-43ee-824c-018a9e786dcb"
-			],
-			"folders_order": []
+			"item": [
+				{
+					"name": "Get joke by keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/jokes/search/cheeta",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"jokes",
+								"search",
+								"cheeta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get jokes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/jokes/",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"jokes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Joke",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4ODE4ODA4LCJleHAiOjE1Mjg5MDUyMDh9.B0mJr4JjEMvNc5yxgsxsVZwQTPATRcH6_Wok-EC9FSE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4Nzg3NDI2LCJleHAiOjE1Mjg4NzM4MjZ9.CTfu-t95QpcV3dy-Me1gU1a8G4DlnS2Jw1lpzwXz1SM",
+								"disabled": true
+							},
+							{
+								"key": "userId",
+								"value": "10",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"joke\": \"This 1 is a new joke\",\n    \"catId\": 1,\n    \"dadRating\": 0,\n    \"userId\": 10,\n    \"keywords\": \"cat\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/jokes/?userId=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"jokes",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Joke",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzgyNzEyLCJleHAiOjE1Mjg4NjkxMTJ9.-idj0GXJp3rX6WkD5jkou6V9S3fo1K9dE0M3kAXdbrc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 13,\n    \"joke\": \"Why don't they play poker in the jungle? To many Cheetas.\",\n    \"catId\": 3,\n    \"dadRating\": 5,\n    \"userId\": 10,\n    \"keywords\": \"jungle, cheeta, poker, bad joke, stuff\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/jokes/?userId=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"jokes",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Joke by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/jokes/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"jokes",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Joke",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4ODE4NTE0LCJleHAiOjE1Mjg5MDQ5MTR9.D7cXZDY9ary1C2TbYfIUGinzfkAVoihJuflS9sl6a4w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 12\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/jokes/12?userId=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"jokes",
+								"12"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"id": "e72b8016-036f-4abb-9e6c-61f417ee5273",
 			"name": "Users",
 			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "b130044b-150b-4cf9-b2d0-ec72c11474bc",
-			"folder": null,
-			"order": [
-				"33f58f22-cf80-4497-a87c-1b5d74557fd2",
-				"bece14fc-94bb-4ad9-820d-09f5e2b6720a",
-				"f81f393c-58c7-4567-925f-feeb20c60a43",
-				"972a9d4a-2733-4189-9740-b400eb9e47c8",
-				"619424c1-9bb5-4f7a-8acb-e2c21cb30e4b"
-			],
-			"folders_order": []
-		}
-	],
-	"requests": [
-		{
-			"id": "25ea0882-944b-4502-8cf0-9a50a98e40f8",
-			"name": "Get Comment by User Id",
-			"url": "localhost:8001/comments/2",
-			"description": null,
-			"data": [],
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "91e37cfc-0c10-4931-a7c9-1e8cc2697079",
-			"headers": "",
-			"pathVariables": {}
+			"item": [
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"tnoelcke\",\n\t\"pass\": \"dogsandcats\",\n\t\"email\": \"stuff@nk.us\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"tnoelcke\",\n\t\"pass\": \"dogsandcats\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4Nzg2ODA1LCJleHAiOjE1Mjg4NzMyMDV9.8QJt2bHKJ57jMX5C2oez4SkEK2uP5TNBFdPfIHMBru0"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "localhost:8001/users/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"users",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzgxNzU2LCJleHAiOjE1Mjg4NjgxNTZ9.v_H9Yy47D21lLfYRkREXgXZ_2vC0JreyhHxAGQDvlGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4,\n    \"username\": \"tnoelcke\",\n    \"pass\": \"$2b$10$MJJiRSuRDX/wwVLbUiQe4.LB9v93oSeog6gTyB.PW9pvw7LKL01iK\",\n    \"email\": \"stuff@or.us\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"id": "33f58f22-cf80-4497-a87c-1b5d74557fd2",
-			"name": "Register User",
-			"url": "localhost:8001/users",
+			"name": "Cataegories",
 			"description": "",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
+			"item": [
 				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [],
-			"folder": "e72b8016-036f-4abb-9e6c-61f417ee5273",
-			"rawModeData": "{\n\t\"username\": \"tnoelcke\",\n\t\"pass\": \"dogsandcats\",\n\t\"email\": \"stuff@nk.us\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "3f381dd1-32e4-42e7-9941-327bb038c12a",
-			"name": "Update Comment Copy",
-			"url": "localhost:8001/comments/6",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
+					"name": "Get categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"my category\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "91e37cfc-0c10-4931-a7c9-1e8cc2697079",
-			"rawModeData": "",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "5779b8f5-3e6a-4b5d-ae7d-ec0de3e95f0e",
-			"name": "Get jokes",
-			"url": "localhost:8001/jokes/",
-			"description": null,
-			"data": [],
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "f766cdd0-afb3-4210-96f7-b1885392ed50",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "619424c1-9bb5-4f7a-8acb-e2c21cb30e4b",
-			"name": "update user",
-			"url": "localhost:8001/users/4",
-			"description": "",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
+					"name": "Post category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"my category\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": {
-				"bearer": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc"
-					}
-				],
-				"type": "bearer"
-			},
-			"events": [],
-			"folder": "e72b8016-036f-4abb-9e6c-61f417ee5273",
-			"rawModeData": "{\n    \"id\": 4,\n    \"username\": \"tnoelcke\",\n    \"pass\": \"$2b$10$MJJiRSuRDX/wwVLbUiQe4.LB9v93oSeog6gTyB.PW9pvw7LKL01iK\",\n    \"email\": \"stuff@or.us\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "62b5203a-a76a-4481-b536-1f34497dedfc",
-			"name": "Update Comment",
-			"url": "localhost:8001/comments/6",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 6,\n  \"name\": \"my category 1234\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"key": "Content-Type",
-					"value": "application/json"
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 6,\n  \"name\": \"my category 1234\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8001/categories/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"categories",
+								"6"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "91e37cfc-0c10-4931-a7c9-1e8cc2697079",
-			"rawModeData": "{\n  \"comment\": \"This joke is stupid and its really dumb\",\n  \"jokeId\": 3,\n  \"userId\": 2,\n  \"dadRating\": 1\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "72e0a959-6c34-4183-8bbd-71aed8edd1a5",
-			"name": "Get categories",
-			"url": "localhost:8001/categories",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "658a6f2b-84ec-4afa-8b2b-1a764a76512a",
-			"rawModeData": "{\n  \"name\": \"my category\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "738ec617-d5fe-4e17-8ee0-c2da9a3846ef",
-			"name": "Get Joke by Id",
-			"url": "localhost:8001/jokes/12",
-			"description": null,
-			"data": [],
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "f766cdd0-afb3-4210-96f7-b1885392ed50",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "7f7e0f24-a6f1-4660-a3c1-e1cffd7812d8",
-			"name": "Delete Joke",
-			"url": "localhost:8001/jokes/12",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "f766cdd0-afb3-4210-96f7-b1885392ed50",
-			"rawModeData": "{\n    \"id\": 4,\n    \"joke\": \"Why don't they play poker in the jungle? To many Cheetas.\",\n    \"catId\": 3,\n    \"dadRating\": 5,\n    \"userId\": 3,\n    \"keywords\": \"jungle, cheeta, poker, bad joke\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "91f1e4c8-7096-41b5-8995-6a5c1cd98891",
-			"name": "Post category",
-			"url": "localhost:8001/categories",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "658a6f2b-84ec-4afa-8b2b-1a764a76512a",
-			"rawModeData": "{\n  \"name\": \"my category\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "972a9d4a-2733-4189-9740-b400eb9e47c8",
-			"name": "Delete User",
-			"url": "localhost:8001/users/4",
-			"description": "",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": {
-				"bearer": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc"
-					}
-				],
-				"type": "bearer"
-			},
-			"events": [],
-			"folder": "e72b8016-036f-4abb-9e6c-61f417ee5273",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "9ffebac1-d5d8-4912-aa92-e342f52e6e77",
-			"name": "Delete",
-			"url": "localhost:8001/categories/6",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "658a6f2b-84ec-4afa-8b2b-1a764a76512a",
-			"rawModeData": "{\n  \"id\": 6,\n  \"name\": \"my category 1234\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "a2db425d-ef14-4e90-ba83-d2e3d3994b1c",
-			"name": "Get joke by keyword",
-			"url": "localhost:8001/jokes/search/cheeta",
-			"description": null,
-			"data": [],
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "f766cdd0-afb3-4210-96f7-b1885392ed50",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "b8d55e47-eff2-4feb-bb55-2edf19b897b5",
-			"name": "Add Comment",
-			"url": "localhost:8001/comments",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "91e37cfc-0c10-4931-a7c9-1e8cc2697079",
-			"rawModeData": "{\n  \"comment\": \"This joke is stupid\",\n  \"jokeId\": 3,\n  \"userId\": 2,\n  \"dadRating\": 0\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "bece14fc-94bb-4ad9-820d-09f5e2b6720a",
-			"name": "Login User",
-			"url": "localhost:8001/users/login",
-			"description": "",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [],
-			"folder": "e72b8016-036f-4abb-9e6c-61f417ee5273",
-			"rawModeData": "{\n\t\"username\": \"tnoelcke\",\n\t\"pass\": \"dogsandcats\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "c3c732d3-228e-47cf-b05a-e52033ba6810",
-			"name": "Update Joke",
-			"url": "localhost:8001/jokes/4",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "f766cdd0-afb3-4210-96f7-b1885392ed50",
-			"rawModeData": "{\n    \"id\": 4,\n    \"joke\": \"Why don't they play poker in the jungle? To many Cheetas.\",\n    \"catId\": 3,\n    \"dadRating\": 5,\n    \"userId\": 3,\n    \"keywords\": \"jungle, cheeta, poker, bad joke, stuff\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "d13cea50-b759-43ee-824c-018a9e786dcb",
-			"name": "Add Joke",
-			"url": "localhost:8001/jokes/",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "f766cdd0-afb3-4210-96f7-b1885392ed50",
-			"rawModeData": "{\n    \"joke\": \"This is a new joke\",\n    \"catId\": 1,\n    \"dadRating\": 0,\n    \"userId\": 1,\n    \"keywords\": \"new, bad joke\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "d1537e09-bf5a-4e13-b286-a24c740e8e23",
-			"name": "Update",
-			"url": "localhost:8001/categories",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json"
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "658a6f2b-84ec-4afa-8b2b-1a764a76512a",
-			"rawModeData": "{\n  \"id\": 6,\n  \"name\": \"my category 1234\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "d6a72bc7-43e8-46ee-a72f-7363ff416c66",
-			"name": "Get Comment by joke id",
-			"url": "localhost:8001/comments/joke/1",
-			"description": null,
-			"data": [],
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": null,
-			"folder": "91e37cfc-0c10-4931-a7c9-1e8cc2697079",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "f81f393c-58c7-4567-925f-feeb20c60a43",
-			"name": "Get User",
-			"url": "localhost:8001/users/4",
-			"description": "",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": {
-				"bearer": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRub2VsY2tlIiwiaWF0IjoxNTI4NzYzNzM5LCJleHAiOjE1Mjg4NTAxMzl9.0hhPS5p6caMyu2GFRhGz_u7sQNCZPu_VqVNLiEvX-vc"
-					}
-				],
-				"type": "bearer"
-			},
-			"events": [],
-			"folder": "e72b8016-036f-4abb-9e6c-61f417ee5273",
-			"headers": "",
-			"pathVariables": {}
+			]
 		}
 	]
 }
