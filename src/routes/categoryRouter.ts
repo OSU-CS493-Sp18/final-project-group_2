@@ -1,6 +1,7 @@
 import { categoryModel, addCategoryModel } from '../models/category';
 import { Router } from 'express';
 import { Categories } from '../controllers/categoryController';
+import { checkToken } from '../controllers/tokenController';
 export const categoriesRouter = Router();
 
 const categoriesController = new Categories.CategoryController();
@@ -25,7 +26,7 @@ categoriesRouter.get("/:categoryId", (req, res, next) => {
     } else { next(); }
 });
 
-categoriesRouter.post("/", (req,res,next) => {
+categoriesRouter.post("/", checkToken, (req,res,next) => {
     const newCategory = req.body;
     if (newCategory) {
         categoriesController.create(newCategory).then(results => {
@@ -38,7 +39,7 @@ categoriesRouter.post("/", (req,res,next) => {
     }
 });
 
-categoriesRouter.put("/", (req,res,next) => {
+categoriesRouter.put("/", checkToken,(req,res,next) => {
     const updatedCategory = req.body;
     if(updatedCategory) {
         categoriesController.update(updatedCategory).then(results => {
@@ -52,7 +53,7 @@ categoriesRouter.put("/", (req,res,next) => {
     }
 });
 
-categoriesRouter.delete("/", (req,res,next) => {
+categoriesRouter.delete("/:categoryId", checkToken,(req,res,next) => {
     const id = parseInt(req.params.categoryId);
     if (id) {
         categoriesController.delete(id).then(result => {
