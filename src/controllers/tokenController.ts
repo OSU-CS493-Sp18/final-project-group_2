@@ -15,27 +15,31 @@ function getToken(header: IncomingHttpHeaders){
 }
 
 export const checkToken: (() => RequestHandler) = (() => (req, res, next) => {
-    let token = getToken(req.headers) || req.query.token || req.body.token || "";
-    let isValidUserPromise = userController.verifyJwt(token);
-
-    isValidUserPromise.then( valid => {
-        // If invalid send 403
-        if(!valid){
-            return res.status(403)
-            .send({message: 'Invalid user, does not have correct login'});
-        }
-        // Otherwise valid user & continue
-
-        next();
-    });
+    const authHeader = req.get('Authorization') || '';
+    const authParts:string[] = authHeader.split('');
+    const token = authParts[0] === 'Bearer' ? authParts[1] : null;
+    if(token){
+        userController.verifyJwt(token).then( valid => {
+            // If invalid send 403
+            if(!valid){
+                res.status(403).send({message: 'Invalid user, does not have correct login'});
+            } else {
+                req.params.add({'userActual': valid});
+                next();
+            }
+        });
+    } else {
+        res.status(403).json({error: "Invalid auth token."})
+    }
 });
 
-
 export const checkUser: (() => RequestHandler) = (() => (req, res, next) => {
-    let userIdReq = parseInt(req.params['userId']);
-    let userIdActual = req.userId
-    if(userId){
-
+    const userActual = req.params['userActual'];
+    const userId = req.params['userId'] || req.query['userId'];
+    if(userId !==  userActual){
+        res.status(401).json({error: "You are not authorized to preform that action"});
+    } else {
+        next();
     }
-})
+});
 

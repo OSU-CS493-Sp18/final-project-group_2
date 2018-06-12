@@ -4,13 +4,14 @@ import { matchedData } from 'express-validator/filter';
 import { validationResult } from 'express-validator/check';
 import { userValidation } from '../lib/userValidation';
 import { Users } from '../controllers/usersController';
+import { checkToken, checkUser } from '../controllers/tokenController';
 
 export const userRouter = Router();
 const userController = new Users.UserController();
 
 /// GET user
-userRouter.get('/:userID', (req, res, next) => {
-    const userID = parseInt(req.params.userID);
+userRouter.get('/:userId', checkToken, checkUser, (req, res, next) => {
+    const userID = parseInt(req.params.userId);
     if (userID) {
         let user = userController.getUser(userID)
             .then((user) => {
@@ -58,7 +59,7 @@ userRouter.post("/", (req, res, next) => {
 });
 
 //update user
-userRouter.put("/", (req, res, next) => {
+userRouter.put("/:userId", checkToken, checkUser,(req, res, next) => {
     const updatedUser:UserModel = req.body;
 
     if(updatedUser) {
@@ -74,7 +75,7 @@ userRouter.put("/", (req, res, next) => {
 });
 
 //Delete user
-userRouter.delete("/", (req, res, next) => {
+userRouter.delete("/", checkToken, checkUser,(req, res, next) => {
     const user:UserModel = req.body;
 
     if(user) {
