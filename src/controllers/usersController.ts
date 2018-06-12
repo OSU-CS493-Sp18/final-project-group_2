@@ -82,7 +82,6 @@ export module Users {
         }
 
         updateUser(user: UserModel) {
-            delete user.token;
             user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
 
             console.log(user.pass);

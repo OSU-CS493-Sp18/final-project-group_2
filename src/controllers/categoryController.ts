@@ -15,7 +15,7 @@ export module Categories {
 
         update(cate: categoryModel) {
             return new Promise((resolve, reject) => {
-                database.query("UPDATE categories SET ? WHERE name = ?", [cate.name], (err, result) => {
+                database.query("UPDATE categories SET ? WHERE name = ?", [cate, cate.name], (err, result) => {
                     err ? reject(err) : resolve(result);
                 });
             });

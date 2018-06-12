@@ -4,6 +4,8 @@ import { matchedData } from 'express-validator/filter';
 import { validateAgainstSchema, extractValidFields } from '../lib/validation';
 import { Joke } from '../controllers/jokeController';
 import {UserModel} from '../models/users';
+import { checkToken, checkUser } from '../controllers/tokenController';
+
 
 export const jokesRouter = Router();
 const jokesController = new Joke.JokeController();
@@ -16,7 +18,7 @@ const jokeSchema = {
 };
 
 /// POST joke
-jokesRouter.post('/', (req, res, next) => {
+jokesRouter.post('/', checkToken, checkUser, (req, res, next) => {
     console.log(req.body);
     const joke:AddJokeModel = req.body.joke;
     const user:UserModel = req.body.user;
@@ -59,7 +61,7 @@ jokesRouter.get('/search/:keyword', (req, res, next) => {
 });
 
 // GET joke
-jokesRouter.get('/id/:jokeID', (req, res, next) => {
+jokesRouter.get('/:jokeID', (req, res, next) => {
     const jokeID = parseInt(req.params.jokeID);
     if(jokeID){
         jokesController.getJokeById(jokeID)
@@ -95,7 +97,7 @@ jokesRouter.get('/', (req, res, next) => {
     });
 });
 
-jokesRouter.put('/:userId', (req,res,next) => {
+jokesRouter.put('/', checkToken, checkUser, (req,res,next) => {
     const updatedJoke:JokeModel = req.body.joke;     
     if(updatedJoke) {
         jokesController.updateJoke(updatedJoke).then(results => {
@@ -109,7 +111,7 @@ jokesRouter.put('/:userId', (req,res,next) => {
     }
 });
 
-jokesRouter.delete('/:userId', (req,res,next) => {
+jokesRouter.delete('/', checkToken, checkUser, (req,res,next) => {
     const joke:JokeModel = req.body.joke;    
     if(joke) {
         jokesController.deleteJoke(joke).then(results => {

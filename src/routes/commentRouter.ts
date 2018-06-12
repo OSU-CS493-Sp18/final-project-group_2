@@ -53,7 +53,7 @@ commentsRouter.post("/", (req, res, next) => {
     }
 });
 
-commentsRouter.put("/:commentId", (req, res, next) => {
+commentsRouter.put("/:userId/:commentId", checkToken, checkUser, (req, res, next) => {
     const id = parseInt(req.params['commentId']);
     const comment:addCommentModel = req.body;
     
@@ -68,7 +68,7 @@ commentsRouter.put("/:commentId", (req, res, next) => {
     }
 });
 
-commentsRouter.delete("/:commentId", (req, res, next) => {
+commentsRouter.delete("/:userId/:commentId", checkToken, checkUser, (req, res, next) => {
     const id = parseInt(req.params['commentId']);
 
     if(id){
