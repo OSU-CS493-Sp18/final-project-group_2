@@ -18,7 +18,7 @@ const jokeSchema = {
 };
 
 /// POST joke
-jokesRouter.post('/', checkToken, checkUser, (req, res, next) => {
+jokesRouter.post('/user/:userId', checkToken, checkUser, (req, res, next) => {
     console.log(req.body);
     const joke:AddJokeModel = req.body.joke;
     const user:UserModel = req.body.user;
@@ -97,7 +97,7 @@ jokesRouter.get('/', (req, res, next) => {
     });
 });
 
-jokesRouter.put('/', checkToken, checkUser, (req,res,next) => {
+jokesRouter.put('/user/:userId', checkToken, checkUser, (req,res,next) => {
     const updatedJoke:JokeModel = req.body.joke;     
     if(updatedJoke) {
         jokesController.updateJoke(updatedJoke).then(results => {
@@ -111,7 +111,7 @@ jokesRouter.put('/', checkToken, checkUser, (req,res,next) => {
     }
 });
 
-jokesRouter.delete('/', checkToken, checkUser, (req,res,next) => {
+jokesRouter.delete('/user/:userId', checkToken, checkUser, (req,res,next) => {
     const joke:JokeModel = req.body.joke;    
     if(joke) {
         jokesController.deleteJoke(joke).then(results => {
