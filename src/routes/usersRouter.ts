@@ -4,7 +4,7 @@ import { matchedData } from 'express-validator/filter';
 import { validationResult } from 'express-validator/check';
 import { userValidation } from '../lib/userValidation';
 import { Users } from '../controllers/usersController';
-import { checkToken, checkUser } from '../controllers/tokenController';
+import {checkToken, checkUser} from '../controllers/tokenController';
 
 export const userRouter = Router();
 const userController = new Users.UserController();
