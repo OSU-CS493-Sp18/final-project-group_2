@@ -82,32 +82,22 @@ export module Users {
         }
 
         updateUser(user: UserModel) {
-            return this.verifyJwt(user.token).then((decoded: any) => {
-                delete user.token;
-                user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
+            delete user.token;
+            user.pass = bcrypt.hashSync(user.pass, this.saltRounds);
 
-                console.log(user.pass);
+            console.log(user.pass);
 
-                return new Promise((resolve, reject) => {
-                    database.query('UPDATE users SET ? WHERE username = ?', [user, decoded.id], (err, results) => {
-                        err ? reject(err) : resolve(results);
-                    });
+            return new Promise((resolve, reject) => {
+                database.query('UPDATE users SET ? WHERE id = ?', [user, user.id], (err, results) => {
+                    err ? reject(err) : resolve(results);
                 });
             });
         }
 
-        deleteUser(user: UserModel) {
-            return this.verifyJwt(user.token).then((decoded: any) => {
-                return new Promise((resolve, reject) => {
-                    this.getUserByname(user.username).then(dbUser => {
-                        if (!dbUser || !bcrypt.compareSync(user.pass, dbUser.pass)) {
-                            reject(null);
-                        } else {
-                            database.query("DELETE FROM users WHERE username=?", [dbUser.username], (err, results) => {
-                                err ? reject(err) : resolve(results);
-                            });
-                        }
-                    });
+        deleteUser(id: number) {
+            return new Promise((resolve, reject) => {
+                database.query("DELETE FROM users WHERE id=?", [id], (err, results) => {
+                    err ? reject(err) : resolve(results);
                 });
             });
         }

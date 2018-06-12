@@ -67,6 +67,7 @@ userRouter.put("/:userId", checkToken, checkUser,(req, res, next) => {
             console.log(results);
             res.status(201).json({ msg: "Updated user in database" });
         }).catch(err => {
+            console.log(err);
             res.status(500).json({ error: "Failed to update user" });
         });
     } else {
@@ -75,11 +76,10 @@ userRouter.put("/:userId", checkToken, checkUser,(req, res, next) => {
 });
 
 //Delete user
-userRouter.delete("/", checkToken, checkUser,(req, res, next) => {
-    const user:UserModel = req.body;
-
-    if(user) {
-        userController.deleteUser(user).then(results => {
+userRouter.delete("/:userId", checkToken, checkUser,(req, res, next) => {
+    const id: number = parseInt(req.params['userId']);
+    if(id) {
+        userController.deleteUser(id).then(results => {
             res.status(204).json({ msg: "deleted user in database" });
         }).catch(err => {
             console.log(err);
